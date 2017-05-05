@@ -26,13 +26,14 @@ var orm = {
 
     // inserts new burger into db
     insertOne: function(table, col, val, cb) {
-	var queryString = "INSERT INTO " + table + " (" + col.toString() + " )" + " VALUES(" + val + ")";
+	var queryString = "INSERT INTO " + table + " (" + col + ") VALUES(?)";
 	// add val grabbed from html into values
-	connection.query(queryString, function(err, res) {
+	console.log(queryString);
+	connection.query(queryString, val, function(err, result) {
 	    if(err) {
 		throw err;
 	    }
-	    cb(res);
+	    cb(result);
 	});
     },
 
