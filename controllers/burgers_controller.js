@@ -12,14 +12,14 @@ router.get("/", function(req, res) {
 });
 
 router.post("/", function(req, res) {
-    burger.insertOne([req.body.name], function() {
+    burger.insertOne(["burger_name"],[req.body.burger], function() {
 	res.redirect("/");
     });
 
 });
 
-router.put("/:name", function(req, res) {
-    burger.updateOne([req.body.devoured], [req.params.name], function() {
+router.put("/:id", function(req, res) {
+    burger.updateOne([req.params.id], function() {
 	res.redirect("/");
     });
 });

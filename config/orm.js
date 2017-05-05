@@ -14,7 +14,7 @@ function toSql(ob) {
 var orm = {
     // shows all burgers in database
     selectAll: function(table, cb) {
-	var queryString = "SELECT * FROM burgers";
+	var queryString = "SELECT * FROM " + table;
 	connection.query(queryString, function(err, res) {
 	    if(err) {
 		throw err;
@@ -25,10 +25,10 @@ var orm = {
     },
 
     // inserts new burger into db
-    insertOne: function(table, vals, cb) {
-	var queryString = "INSERT INTO burgers (name) VALUES ??" ;
+    insertOne: function(table, col, val, cb) {
+	var queryString = "INSERT INTO " + table + " (" + col.toString() + " )" + " VALUES(" + val + ")";
 	// add val grabbed from html into values
-	connection.query(queryString, vals, function(err, res) {
+	connection.query(queryString, function(err, res) {
 	    if(err) {
 		throw err;
 	    }
@@ -37,9 +37,9 @@ var orm = {
     },
 
     // updates devour boolean in db
-    updateOne: function(table, condition, name, cb) {
-	var queryString = "UPDATE burgers SET condition = ?? WHERE name = ??";
-	connection.query(queryString, condition, name, function(err, res) {
+    updateOne: function(table, id, cb) {
+	var queryString = "UPDATE burgers SET devoured = true WHERE id = " + id;
+	connection.query(queryString, id, function(err, res) {
 	    if(err){
 		throw err;
 	    }
