@@ -17,7 +17,6 @@ var orm = {
     insertOne: function(table, col, val, cb) {
 	var queryString = "INSERT INTO " + table + " (" + col + ") VALUES(?)";
 	// add val grabbed from html into values
-	console.log(queryString);
 	connection.query(queryString, val, function(err, result) {
 	    if(err) {
 		throw err;
