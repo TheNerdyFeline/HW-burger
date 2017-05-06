@@ -1,16 +1,5 @@
 var connection = require("./connection.js");
 
-// function to translate object into sql
-function toSql(ob) {
-    var arr = [];
-    for(var key in ob) {
-	if(Object.hasOwnProperty.call(ob, key)) {
-	    arr.push(key +  "=" + ob[key]);
-	}
-    }
-    return arr.toString();
-};
-
 var orm = {
     // shows all burgers in database
     selectAll: function(table, cb) {
